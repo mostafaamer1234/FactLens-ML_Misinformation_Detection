@@ -4,12 +4,15 @@ import json
 from flask import Flask, render_template, request, jsonify
 import joblib
 import numpy as np
+import sys
 
 # PATH SETUP
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(CURRENT_DIR)
 MODELS_DIR = os.path.join(BASE_DIR, "models")
+sys.path.insert(0, BASE_DIR)
+from text_cleaning import strip_artifacts  # noqa: E402  (same cleaning as training)
 
 # LOAD MODELS
 
@@ -102,7 +105,7 @@ def index():
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
-    article_text = request.form.get("article_text", "").strip()
+    article_text = strip_artifacts(request.form.get("article_text", "").strip())
 
     if not article_text:
         return jsonify({"error": "No article text provided."}), 400

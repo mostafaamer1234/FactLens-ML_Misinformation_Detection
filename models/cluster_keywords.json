@@ -1,86 +1,6 @@
 {
   "0": {
     "top_terms": [
-      "trump",
-      "donald",
-      "donald trump",
-      "president",
-      "just",
-      "video",
-      "people",
-      "like",
-      "campaign",
-      "said",
-      "image",
-      "white",
-      "obama",
-      "featured",
-      "featured image"
-    ],
-    "size": 6402
-  },
-  "1": {
-    "top_terms": [
-      "boiler",
-      "boiler room",
-      "acr",
-      "room",
-      "pm",
-      "00 pm",
-      "radio",
-      "join",
-      "00",
-      "broadcast",
-      "tune",
-      "animals",
-      "alternate",
-      "episode",
-      "est"
-    ],
-    "size": 203
-  },
-  "2": {
-    "top_terms": [
-      "clinton",
-      "hillary",
-      "hillary clinton",
-      "trump",
-      "fbi",
-      "campaign",
-      "video",
-      "emails",
-      "email",
-      "state",
-      "foundation",
-      "sanders",
-      "obama",
-      "just",
-      "president"
-    ],
-    "size": 2414
-  },
-  "3": {
-    "top_terms": [
-      "twitter",
-      "twitter com",
-      "pic",
-      "pic twitter",
-      "com",
-      "trump",
-      "2017",
-      "realdonaldtrump",
-      "video",
-      "2017 realdonaldtrump",
-      "https",
-      "january",
-      "2016",
-      "president",
-      "february"
-    ],
-    "size": 1466
-  },
-  "4": {
-    "top_terms": [
       "black",
       "police",
       "officers",
@@ -89,34 +9,114 @@
       "lives",
       "officer",
       "matter",
+      "cops",
       "white",
       "video",
-      "cops",
       "people",
-      "man",
       "police officers",
+      "man",
       "cop"
     ],
-    "size": 1286
+    "size": 1222
+  },
+  "1": {
+    "top_terms": [
+      "video",
+      "people",
+      "trump",
+      "said",
+      "just",
+      "like",
+      "news",
+      "state",
+      "women",
+      "right",
+      "america",
+      "new",
+      "time",
+      "media",
+      "watch"
+    ],
+    "size": 10048
+  },
+  "2": {
+    "top_terms": [
+      "trump",
+      "donald",
+      "donald trump",
+      "president",
+      "just",
+      "people",
+      "like",
+      "video",
+      "campaign",
+      "said",
+      "white",
+      "know",
+      "republican",
+      "going",
+      "media"
+    ],
+    "size": 6690
+  },
+  "3": {
+    "top_terms": [
+      "obama",
+      "president",
+      "president obama",
+      "trump",
+      "video",
+      "barack",
+      "white",
+      "iran",
+      "house",
+      "america",
+      "white house",
+      "administration",
+      "just",
+      "said",
+      "barack obama"
+    ],
+    "size": 1921
+  },
+  "4": {
+    "top_terms": [
+      "students",
+      "school",
+      "student",
+      "campus",
+      "college",
+      "university",
+      "schools",
+      "teacher",
+      "high school",
+      "parents",
+      "education",
+      "kids",
+      "black",
+      "high",
+      "children"
+    ],
+    "size": 650
   },
   "5": {
     "top_terms": [
-      "obama",
-      "video",
-      "people",
-      "said",
+      "clinton",
+      "hillary",
+      "hillary clinton",
       "trump",
-      "just",
-      "president",
-      "like",
-      "news",
-      "america",
+      "fbi",
+      "campaign",
+      "emails",
+      "video",
+      "email",
+      "foundation",
       "state",
-      "american",
-      "watch",
-      "right",
-      "new"
+      "sanders",
+      "comey",
+      "just",
+      "clinton foundation"
     ],
-    "size": 11171
+    "size": 2344
   }
 }

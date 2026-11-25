@@ -17,6 +17,8 @@ from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
 import joblib
 
+from text_cleaning import strip_artifacts
+
 
 
 RANDOM_STATE = 42
@@ -82,7 +84,9 @@ def load_and_clean_data(path):
     df["title"] = df["title"].fillna("")
     df["text"] = df["text"].fillna("")
 
-    df["text_full"] = df["title"] + " " + df["text"]
+    # Strip publisher artifacts (Reuters datelines, image credits, handles, URLs) so the model
+    # learns from content rather than from which outlet wrote the article.
+    df["text_full"] = (df["title"] + " " + df["text"]).map(strip_artifacts)
 
     df = df[(df["text_full"].str.len() > 100) & (df["text_full"].str.len() < 20000)]
 

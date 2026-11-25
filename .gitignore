@@ -1,1 +1,8 @@
 /venv
+# derived / duplicate artifacts
+data/news.csv
+models/models/
+models/data/
+.vscode/
+__pycache__/
+.venv/

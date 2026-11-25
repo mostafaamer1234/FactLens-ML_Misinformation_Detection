@@ -1,9 +1,14 @@
 # **FactLens: Misinformation Detection**
 
+![CI](https://github.com/mostafaamer1234/FactLens-ML_Misinformation_Detection/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
+
+
 
 ## **Overview**
 
-FactLens is a machine learning algrothim hosted in a web application designed to detect misinformation in online articles, journals, and research papers. It combines a supervised fake-news classifier with an unsupervised rumor-theme extractor to provide users with a detailed analysis of any input text. It is served as a Flask web app, displaying a text box where the user can input an article's text, then displaying whether it is real or fake, the model's probabilities, and top keywords.
+FactLens is a machine learning algorithm hosted in a web application designed to detect misinformation in online articles, journals, and research papers. It combines a supervised fake-news classifier with an unsupervised rumor-theme extractor to provide users with a detailed analysis of any input text. It is served as a Flask web app, displaying a text box where the user can input an article's text, then displaying whether it is real or fake, the model's probabilities, and top keywords.
 
 Users can paste article text into the interface, and FactLens returns:
 
@@ -164,3 +169,27 @@ FactLens demonstrates an effective approach to combating misinformation by combi
 * Larger and more diverse datasets
 
 
+
+
+## Honest evaluation: what the 99% really measures
+
+The Kaggle/ISOT fake-news dataset has a known shortcut. Nearly every REAL article is from Reuters and opens with a dateline like `WASHINGTON (Reuters) -`, while FAKE articles carry other outlets' boilerplate. `analysis/leakage_study.py` measures how much that matters (macro-F1; exact duplicates removed first):
+
+| Setup | Macro-F1 |
+|---|---|
+| Original: TF-IDF + logistic regression on raw text | 0.994 |
+| **Shortcut: a single rule, "no `(Reuters)` in the text means fake"** | **0.995** |
+| Same model, publisher cues removed | 0.987 |
+| Cues-removed model on unseen claims (LIAR / PolitiFact, n=9,128) | 0.491 |
+| Trivial baseline on LIAR: always predict fake | 0.356 |
+| Reference: same model trained and tested on LIAR | 0.613 |
+
+What this shows:
+- **The 99% largely reflects outlet style, not truthfulness.** A one-line rule beats the model, and the top "real" features were `reuters`, `said` and `washington reuters`.
+- **Training and inference now strip publisher artifacts** (`text_cleaning.py`), so prepending a Reuters dateline cannot change a prediction. A test enforces this.
+- **On a different source of claims the model falls to 0.49 macro-F1**, only modestly above always guessing "fake". In-domain accuracy on ISOT says little about real-world misinformation detection. Cross-dataset training or a transformer model fine-tuned on multiple sources would be the next step.
+
+```bash
+python analysis/leakage_study.py --liar path/to/liar_dataset   # LIAR: https://www.cs.ucsb.edu/~william/data/liar_dataset.zip
+pytest -q tests
+```
