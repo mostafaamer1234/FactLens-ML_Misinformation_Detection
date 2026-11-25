@@ -4,6 +4,8 @@
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
+**Live demo: [factlens-mostafa.vercel.app](https://factlens-mostafa.vercel.app)**
+
 
 
 ## **Overview**

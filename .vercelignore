@@ -1,0 +1,8 @@
+.venv
+data
+deliverables
+analysis
+tests
+models/models
+models/data
+.git

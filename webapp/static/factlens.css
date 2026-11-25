@@ -1,0 +1,40 @@
+:root { --accent: #bf4800; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #ff9f0a; } }
+
+.composer { padding-bottom: 24px; }
+.composer label { display: block; margin-bottom: 10px; }
+textarea {
+  width: 100%; resize: vertical; min-height: 220px; border: 0; outline: none;
+  background: var(--bg-alt); color: var(--ink); border-radius: var(--radius);
+  padding: 22px 24px; font: 19px/1.55 var(--font); letter-spacing: -0.015em;
+}
+textarea:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent); }
+.composer-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+.samples { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--hair); background: transparent; color: var(--ink); border-radius: 980px; padding: 6px 12px; font: 13px var(--font); cursor: pointer; }
+.chip:hover { border-color: var(--ink-3); }
+
+.result { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; padding-top: 40px; padding-bottom: 72px; }
+.verdict-word { font-size: 72px; line-height: 1; font-weight: 600; letter-spacing: -0.045em; margin: 8px 0 20px; }
+.verdict-word.fake { color: var(--bad); }
+.verdict-word.real { color: var(--good); }
+.meter { height: 6px; border-radius: 3px; background: var(--hair-soft); overflow: hidden; max-width: 320px; }
+.meter span { display: block; height: 100%; width: 0; background: var(--ink); border-radius: 3px; transition: width .5s ease; }
+#probs { margin-top: 12px; font-variant-numeric: tabular-nums; }
+.why { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.why .q-caps { margin-bottom: 10px; }
+.why .q-ranked td:not(:first-child) { width: 30%; color: var(--ink-2); }
+.topic { grid-column: 1 / -1; border-top: 1px solid var(--hair-soft); padding-top: 24px; }
+.topic-terms { font-size: 21px; letter-spacing: -0.02em; margin: 8px 0 0; color: var(--ink-2); }
+.topic-terms b { color: var(--ink); font-weight: 600; }
+
+.limits-lede { max-width: 58ch; margin: 0 0 40px; }
+.limits-figures .q-num { font-size: 52px; }
+.limits-note { margin-top: 28px; }
+
+@media (max-width: 860px) {
+  .result, .why { grid-template-columns: 1fr; gap: 36px; }
+  .verdict-word { font-size: 56px; }
+}
+
+.result[hidden] { display: none; }

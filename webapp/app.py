@@ -96,6 +96,20 @@ def assign_cluster(text: str):
     }
 
 
+def word_contributions(text: str, top_n: int = 6):
+    """Terms in this text that pushed the score toward FAKE or REAL (tf-idf weight x model coefficient)."""
+    x = tfidf.transform([text])
+    coef = logreg.coef_[0] if int(np.where(logreg.classes_ == 1)[0][0]) == 1 else -logreg.coef_[0]
+    vocab = tfidf.get_feature_names_out()
+    contrib = [(vocab[i], float(v * coef[i])) for i, v in zip(x.indices, x.data)]
+    toward_fake = sorted([c for c in contrib if c[1] > 0], key=lambda c: -c[1])[:top_n]
+    toward_real = sorted([c for c in contrib if c[1] < 0], key=lambda c: c[1])[:top_n]
+    return {
+        "toward_fake": [{"term": t, "weight": round(w, 4)} for t, w in toward_fake],
+        "toward_real": [{"term": t, "weight": round(-w, 4)} for t, w in toward_real],
+    }
+
+
 # ROUTES
 
 @app.route("/", methods=["GET"])
@@ -123,9 +137,10 @@ def analyze():
         "cluster_name": cl["cluster_name"],
         "cluster_top_terms": cl["top_terms"],
         "cluster_size": cl["size"],
+        "contributions": word_contributions(article_text),
     }
     return jsonify(response)
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="127.0.0.1", port=5000, debug=os.getenv("FLASK_DEBUG") == "1")
