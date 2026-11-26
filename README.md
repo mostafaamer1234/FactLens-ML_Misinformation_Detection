@@ -1,5 +1,7 @@
 # **FactLens: Misinformation Detection**
 
+**Live demo: [factlens-mostafa.vercel.app](https://factlens-mostafa.vercel.app)**
+
 
 ## **Overview**
 
