@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About · FactLens</title>
+  <meta name="description" content="Paste an article and see the classifier's verdict, the words that moved it, and an honest account of how far to trust it." />
+  <link rel="stylesheet" href="{{ url_for('static', filename='quiet.css') }}" />
+  </head>
+<body>
+  <nav class="q-nav">
+    <div class="q-wrap">
+      <a class="q-brand" href="/">FactLens</a>
+      <div class="q-links">
+        <a href="/">Analyze an article</a>
+        <a href="https://github.com/mostafaamer1234/FactLens-ML_Misinformation_Detection">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="q-wrap q-hero">
+      <p class="q-eyebrow">NLP · Misinformation research</p>
+      <h1 class="q-title">What a fake-news classifier actually sees. <span class="q-muted">And how far to trust it.</span></h1>
+      <p><a class="q-btn" href="/">Analyze an article</a></p>
+    </header>
+    <section class="q-wrap q-section" id="limits">
+      <h2 class="q-h2">What the 99% really measures.</h2>
+      <p class="q-lede limits-lede">The training data has a shortcut: nearly every real article is a Reuters wire story. A single rule that only looks for “(Reuters)” beats the model. So this version strips publisher cues before training and before every prediction, and it is tested on claims from a different source.</p>
+      <div class="q-figures limits-figures">
+        <div class="q-figure"><div class="q-num">0.995</div><div class="q-label">Macro-F1 of the one-line “(Reuters)” rule on the original data</div></div>
+        <div class="q-figure"><div class="q-num">0.987</div><div class="q-label">This model, with publisher cues removed, on the same data</div></div>
+        <div class="q-figure"><div class="q-num">0.491</div><div class="q-label">The same model on unseen PolitiFact claims (LIAR)</div></div>
+        <div class="q-figure"><div class="q-num">0.356</div><div class="q-label">Baseline that always answers “fake” on those claims</div></div>
+      </div>
+      <p class="q-note limits-note">Treat the verdict as a description of writing style, not of truth. Full study: <a href="https://github.com/mostafaamer1234/FactLens-ML_Misinformation_Detection/blob/portfolio-upgrade/analysis/leakage_study.py">analysis/leakage_study.py</a>.</p>
+    </section>
+
+    <section class="q-wrap q-section">
+      <h2 class="q-h2">How it works.</h2>
+      <div class="q-steps">
+        <div class="q-step"><h3 class="q-h3">Clean</h3><p>Datelines, image credits, handles and links are removed so the model can't identify the outlet.</p></div>
+        <div class="q-step"><h3 class="q-h3">Weigh words</h3><p>TF-IDF over words and word pairs feeds a logistic regression. Each word's push is its weight in your text times its learned coefficient.</p></div>
+        <div class="q-step"><h3 class="q-h3">Place the topic</h3><p>The same features, reduced with PCA, are matched to one of six k-means topic clusters learned from 39,000 articles.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="q-foot">
+    <div class="q-wrap">
+      <span>FactLens · Mostafa Amer</span>
+      <a href="https://github.com/mostafaamer1234/FactLens-ML_Misinformation_Detection">Source on GitHub</a>
+    </div>
+  </footer>
+
+  </body>
+</html>

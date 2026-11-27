@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/badge/python-3.12-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-**Live demo: [factlens-mostafa.vercel.app](https://factlens-mostafa.vercel.app)**
+**Try it: [factlens-mostafa.vercel.app](https://factlens-mostafa.vercel.app)**. Paste an article and FactLens marks up the words pushing it toward wire-style reporting or fake-news style in place, with a verdict, topic cluster and an honest trust note. The leakage study is at [/about](https://factlens-mostafa.vercel.app/about).
 
 
 

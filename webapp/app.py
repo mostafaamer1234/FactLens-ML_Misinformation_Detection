@@ -117,6 +117,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/about", methods=["GET"])
+def about():
+    return render_template("about.html")
+
+
 @app.route("/analyze", methods=["POST"])
 def analyze():
     article_text = strip_artifacts(request.form.get("article_text", "").strip())
@@ -138,6 +143,9 @@ def analyze():
         "cluster_top_terms": cl["top_terms"],
         "cluster_size": cl["size"],
         "contributions": word_contributions(article_text),
+        # every scored term, for highlighting the text in place (the cleaned text is what was scored)
+        "highlights": word_contributions(article_text, top_n=60),
+        "scored_text": article_text,
     }
     return jsonify(response)
 
